@@ -5,7 +5,7 @@ class VisitedCountriesController < ProtectedController
 
   # GET /visited_countries
   def index
-    @visited_countries = VisitedCountry.all
+    @visited_countries = current_user.visited_countries.all
 
     render json: @visited_countries
   end
@@ -17,7 +17,7 @@ class VisitedCountriesController < ProtectedController
 
   # POST /visited_countries
   def create
-    @visited_country = VisitedCountry.new(visited_country_params)
+    @visited_country = current_user.visited_countries.new(visited_country_params)
 
     if @visited_country.save
       render json: @visited_country, status: :created, location: @visited_country
@@ -44,7 +44,7 @@ class VisitedCountriesController < ProtectedController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_visited_country
-    @visited_country = VisitedCountry.find(params[:id])
+    @visited_country = current_user.visited_countries.find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.
