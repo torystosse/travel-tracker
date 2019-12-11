@@ -2,5 +2,6 @@
 
 class User < ApplicationRecord
   include Authentication
-  has_many :examples, :visited_countries
+  has_many :examples
+  has_many :visited_countries
 end
