@@ -7,6 +7,7 @@ curl "http://localhost:4741/visited_countries/${ID}" \
   --data '{
     "visited_country": {
       "country": "'"${COUNTRY}"'",
-      "year": "'"${YEAR}"'"
+      "year": "'"${YEAR}"'",
+      "user_id": "'"${USERID}"'"
     }
   }'
