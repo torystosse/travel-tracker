@@ -17,7 +17,7 @@ class VisitedCountriesController < ProtectedController
 
   # POST /visited_countries
   def create
-    @visited_country = current_user.visited_countries.new(visited_country_params)
+    @visited_country = current_user.visited_countries.build(visited_country_params)
 
     if @visited_country.save
       render json: @visited_country, status: :created, location: @visited_country
