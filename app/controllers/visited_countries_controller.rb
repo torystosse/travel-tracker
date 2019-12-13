@@ -5,7 +5,7 @@ class VisitedCountriesController < ProtectedController
 
   # GET /visited_countries
   def index
-    @visited_countries = current_user.visited_countries.all
+    @visited_countries = current_user.visited_countries.all.order(:year)
 
     render json: @visited_countries
   end

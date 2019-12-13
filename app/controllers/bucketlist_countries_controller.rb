@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-class BucketlistCountriesController < ApplicationController
+class BucketlistCountriesController < ProtectedController
   before_action :set_bucketlist_country, only: %i[show update destroy]
 
   # GET /bucketlist_countries
   def index
-    @bucketlist_countries = BucketlistCountry.all
+    @bucketlist_countries = current_user.bucketlist_countries.all.order(:rank)
 
     render json: @bucketlist_countries
   end
@@ -17,7 +17,7 @@ class BucketlistCountriesController < ApplicationController
 
   # POST /bucketlist_countries
   def create
-    @bucketlist_country = BucketlistCountry.new(bucketlist_country_params)
+    @bucketlist_country = current_user.bucketlist_countries.build(bucketlist_country_params)
 
     if @bucketlist_country.save
       render json: @bucketlist_country, status: :created, location: @bucketlist_country
@@ -44,7 +44,7 @@ class BucketlistCountriesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_bucketlist_country
-    @bucketlist_country = BucketlistCountry.find(params[:id])
+    @bucketlist_country = current_user.bucketlist_countries.find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.
