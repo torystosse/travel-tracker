@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_13_174035) do
+ActiveRecord::Schema.define(version: 2019_12_13_175751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2019_12_13_174035) do
     t.integer "rank"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_bucketlist_countries_on_user_id"
   end
 
   create_table "examples", force: :cascade do |t|
@@ -49,6 +51,7 @@ ActiveRecord::Schema.define(version: 2019_12_13_174035) do
     t.index ["user_id"], name: "index_visited_countries_on_user_id"
   end
 
+  add_foreign_key "bucketlist_countries", "users"
   add_foreign_key "examples", "users"
   add_foreign_key "visited_countries", "users"
 end
