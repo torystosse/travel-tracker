@@ -1,0 +1,2 @@
+class BucketlistCountry < ApplicationRecord
+end
